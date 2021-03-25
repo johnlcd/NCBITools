@@ -27,16 +27,11 @@
 
 ## Directory catalog
 
-- **GEO_Utility**  	
-	- **script**  
-		- GEOquary_download.R
-	- GEO_download
-	- ... ...
-	- ... ...
-- **...**
-	- **... ...**
-		- ... ...
-		- ... ...
+- **script**  	
+	- GEOquary_download.R  
+	- ... ...  
+- GEO_download 
+- ... ... 
 <br>
 
 
@@ -46,47 +41,19 @@
 ***CMD:***  
 
 		export NCBITools=/path/to/NCBITools
-		export PATH=$PKG_DIR/bin:$PATH
-
-- ### Set the environment variables of each tools (sub-directory)
-
-***CMD:***  
-
-		cd $PKG_DIR/data
-		tar -zxvf intron_pairs_data.tgz
-		cd $PKG_DIR/data/raw_data
-		gunzip *.gz
-		cat Histone_part1.txt Histone_part2.txt > Histone.txt
-<br>
+		export PATH=${NCBITools}/GEO_Utility:$PATH
 
 
-## Work flow
-### **CIRCScan** Pipeline  
-![CIRCScan pipeline](https://github.com/johnlcd/CIRCScan/blob/master/pipeline.jpg)  
-
-### 1. Data preparation and feature generation
-> Epigenetic data including DNaseI HS, Histone modification, downloaded from `ENCODE` [http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/](http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/)  
-- ### Process the raw broadPeak/narrowPeak file of ENCODE
+## Usage
+### 1. **GEO_download**: download GEO data (including supplemetary files)   
 
 ***CMD:***
 
-For each histone mark: (e.g.: H3K36me3)
+For GEO accession GSEXXXX: 
 		
-		zcat wgEncodeBroadHistoneK562H3k36me3StdPk.broadPeak.gz | awk -v OFS='\t' '{print "K562","None","H3K36me3",$1,$2,$3}' > K562_H3K36me3.txt
+		GEO_download --file/--supp -a <GEO accession> [ -d <out directory> ] 
 
-then merged all marks of selected cell lines:
+then the program downloads files ("--supp" for supplementary files).
 
-		#rm -f Histon.txt
-		cat <(echo "cell treatment antibody chr start end" | sed 's/ /\t/g') *.txt > Histon.txt (Put these '.txt' file in one directory)
-
-
-For DHS:
-
-		zcat wgEncodeAwgDnaseUwdukeK562UniPk.narrowPeak.gz | awk -v OFS='\t' '{print "K562","None",$1,$2,$3}' > K562_DNaseI.txt
-
-then merged all cell line:
-
-		#rm -f DNaseI.txt
-		cat <(echo "cell treatment chr start end" | sed 's/ /\t/g') *.txt > DNaseI.txt
 		
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################################################
-# File Name: abc.sh
+# File Name: GEO_download
 # Author: CJB
 # mail: johnlcd@stu.xjtu.edu.cn
 # Created Time: Fri 18 Jan 2019 05:08:07 PM CST
@@ -20,7 +20,7 @@ if [ $# -ge "3" ] && [ $# -le "5" ] && [ $2 == "-a" ]; then
 		fi
 		echo `date` >> log/download_${geo}.log
 		mkdir -p log
-		nohup time R CMD BATCH --slave "--args $1 $3" /home/chenjiabin/file/project_scr/general_use/R_files/GEOquary_download.R log/download_${geo}.log
+		nohup time R CMD BATCH --slave "--args $1 $3" ${NCBITools}/GEO_utility/script/GEOquary_download.R log/download_${geo}.log
 		echo ">>> Downloading of ${geo} finished." >> log/download_${geo}.log
 		echo `date` >> log/download_${geo}.log
 
