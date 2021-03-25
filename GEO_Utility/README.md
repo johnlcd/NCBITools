@@ -1,6 +1,6 @@
 
-# NCBITools  
-> Toolkits for download and process ***`NCBI`*** data files 
+# GEO_Utility  
+> Toolkits for ***`GEO`*** data utilitis 
 <br>
 
 ## License
@@ -8,21 +8,13 @@
 <br>
 
 ## Source
-> [https://github.com/johnlcd/NCBITools](https://github.com/johnlcd/NCBITools)  
+> [https://github.com/johnlcd/NCBITools](https://github.com/johnlcd/NCBITools/GEO_download)  
 <br>
 
 ## Maintainer
 > **Jia-Bin Chen**  
 > You can contact [:email:](johnlcd@stu.xjtu.edu.cn) johnlcd@stu.xjtu.edu.cn 
   when you have any questions, suggestions, comments, etc.  
-<br>
-
-## Building `NCBITools`
-
-***CMD:***  
-
-		git clone https://github.com/johnlcd/NCBITools.git
-
 <br>
 
 ## Directory catalog
