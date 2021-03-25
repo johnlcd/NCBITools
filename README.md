@@ -46,17 +46,7 @@
 ***CMD:***  
 
 		export NCBITools=/path/to/NCBITools
-		export PATH=$PKG_DIR/bin:$PATH
 
 - ### Set the environment variables of each tools (sub-directory)
-
-***CMD:***  
-
-		cd $PKG_DIR/data
-		tar -zxvf intron_pairs_data.tgz
-		cd $PKG_DIR/data/raw_data
-		gunzip *.gz
-		cat Histone_part1.txt Histone_part2.txt > Histone.txt
-<br>
 
 
