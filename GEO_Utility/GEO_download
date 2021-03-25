@@ -1,0 +1,74 @@
+#!/bin/bash
+#########################################################################
+# File Name: abc.sh
+# Author: CJB
+# mail: johnlcd@stu.xjtu.edu.cn
+# Created Time: Fri 18 Jan 2019 05:08:07 PM CST
+#########################################################################
+
+
+if [ $# -ge "3" ] && [ $# -le "5" ] && [ $2 == "-a" ]; then
+
+	if [ $# == "3" ]; then
+		
+		mkdir -p log
+		geo=${3}
+		if [ $1 == "--file" ]; then
+			echo ">>> Start to dowmload GEO files of ${geo}, out put directory is ${PWD} ... ... " > log/download_${geo}.log
+		elif [ $1 == "--supp" ]; then
+			echo ">>> Start to dowmload GEO supplementary files of ${geo}, out put directory is ${PWD} ... ... " > log/download_${geo}.log
+		fi
+		echo `date` >> log/download_${geo}.log
+		mkdir -p log
+		nohup time R CMD BATCH --slave "--args $1 $3" /home/chenjiabin/file/project_scr/general_use/R_files/GEOquary_download.R log/download_${geo}.log
+		echo ">>> Downloading of ${geo} finished." >> log/download_${geo}.log
+		echo `date` >> log/download_${geo}.log
+
+	elif [ $# == "5" ] && [ $2 == "-a" ] && [ $4 == "-d" ]; then
+
+		mkdir -p log
+		geo=${3}
+		outdir=${5}
+		if [ $1 == "--file" ]; then
+			echo ">>> Start to dowmload GEO files of ${geo}, out put directory is ${outdir} ... ... " > log/download_${geo}.log
+		elif [ $1 == "--supp" ]; then
+			echo ">>> Start to dowmload GEO supplementary files of ${geo}, out put directory is ${outdir} ... ... " > log/download_${geo}.log
+		fi
+		echo `date` >> log/download_${geo}.log
+		mkdir -p log
+		nohup time R CMD BATCH --slave "--args $1 $3 $5" /home/chenjiabin/file/project_scr/general_use/R_files/GEOquary_download.R log/download_${geo}.log
+		echo ">>> Downloading of ${geo} finished." >> log/download_${geo}.log
+		echo `date` >> log/download_${geo}.log
+
+	fi
+
+
+else \
+
+	echo ======================================
+	
+	echo " "
+	echo USAGE:
+	echo " "
+	echo " $0 --file/--supp -a <GEO accession> [ -d <out directory> ] "
+	echo " "
+	
+	echo --------------------------------------
+	
+	echo " "
+	echo EXAMPLEs:
+	echo " "
+	echo " $0 --file/--supp -a GSE120815 [ -d out ]"
+	echo " "
+	
+	echo ======================================
+	
+	echo " "
+	echo Command is: $0 $*
+	echo " "
+
+fi
+
+
+## END
+
